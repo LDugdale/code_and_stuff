@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 
 export type Page = {
     name: string
@@ -21,6 +19,7 @@ export type Metadata = {
     createdOn: string
     updatedOn: string
     isPublished: boolean
+    abstract:string
     author: string
     tags: Array<string>
 };
@@ -42,6 +41,7 @@ export const pages: Array<Page> = [
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",
@@ -78,6 +78,7 @@ export const pages: Array<Page> = [
           "createdOn": "1.01.2011, 02:03:04.567",
           "updatedOn": "1.01.2011, 02:03:04.567",
           "isPublished": true,
+          "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
           "author": "Laurie Dugdale",
           "tags": [
             "about",
@@ -103,6 +104,7 @@ export const pages: Array<Page> = [
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",
@@ -126,6 +128,7 @@ export const pages: Array<Page> = [
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",
@@ -152,6 +155,7 @@ export const pageLookup: {[key: string]: Page} = {
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",
@@ -175,6 +179,7 @@ export const pageLookup: {[key: string]: Page} = {
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",
@@ -211,6 +216,7 @@ export const pageLookup: {[key: string]: Page} = {
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",
@@ -234,6 +240,7 @@ export const pageLookup: {[key: string]: Page} = {
       "createdOn": "1.01.2011, 02:03:04.567",
       "updatedOn": "1.01.2011, 02:03:04.567",
       "isPublished": true,
+      "abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
       "author": "Laurie Dugdale",
       "tags": [
         "about",

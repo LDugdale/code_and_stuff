@@ -1,30 +1,26 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { Box } from '@mui/material';
 import React, { FC, ReactElement } from 'react'
 import { PageRoutes } from '../../routing';
 import Menu from '../menu';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-    content: {
-      flexGrow: 1
-    }
-  }),
-);
-
 const Layout: FC = (): ReactElement => {
 
-    const classes = useStyles();
-
     return (
-        <div className={classes.root}>
+        <Box
+          sx={{
+            display: 'flex',
+          }}
+        >
             <Menu />
-            <main className={classes.content}>
+            <Box
+              component='main'
+              sx={{
+                flexGrow: 1
+              }}
+            >
                 <PageRoutes/>
-            </main>
-        </div>
+            </Box>
+        </Box>
     );
 }
 

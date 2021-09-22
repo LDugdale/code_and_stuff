@@ -1,63 +1,34 @@
-import { Box, Button, createStyles, Divider, Drawer, IconButton, List, makeStyles, Theme } from '@material-ui/core';
 import React, { FC, ReactElement, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import { pages, pageLookup } from '../../pageData';
-import MenuItems from './menuItems';
-import logo from './logo.svg';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import { Link } from 'react-router-dom';
+import { pageLookup } from '../../pageData';
+import { Box, Drawer, Fab, Theme, useMediaQuery, useTheme } from '@mui/material';
+import MenuContent from './menuContent';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 320;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    paperAnchorDockedLeft: {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.common.white,
-    },
-    logo: {
-      width: '100%',
-      margin: '0 auto',
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-      paddingRight: theme.spacing(1),
-    },
-    divider: {
-      backgroundColor: '#565656',
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2),
-    },
-    menu: {
-      flexGrow: 1
-    },
-    icons: {
-      color: theme.palette.common.white,
-      textTransform: 'none'
-    },
-    footer: {
-      display: 'flex',
-      flexDirection: 'row',
-      paddingLeft: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-      justifyContent: 'center'
-    }
-  }),
-);
+const drawerStyle = {
+  width: drawerWidth,
+  flexShrink: 0,
+  '& .MuiDrawer-paper': {
+    width: drawerWidth,
+    boxSizing: 'border-box',                  
+    backgroundColor: (theme: Theme) => theme.palette.secondary.main,
+    color: (theme: Theme) => theme.palette.common.white,
+  }
+};
 
 const Menu: FC = (): ReactElement => {
 
-    const location = useLocation();
-    const [menuOpenList, setMenuOpenList] = useState<{[key: string]: boolean}>({});
-    const classes = useStyles();
+  const theme = useTheme();
+  const location = useLocation();
+  const [menuOpenList, setMenuOpenList] = useState<{[key: string]: boolean}>({});    
+  const isMobile = useMediaQuery(theme.breakpoints.up('xs'));
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
     useEffect(() => {
       const page = pageLookup[location.pathname.toLowerCase()];
@@ -71,10 +42,11 @@ const Menu: FC = (): ReactElement => {
         list[parentPage.path] = list[parentPage.path] === undefined ? true : list[parentPage.path]
         setMenuOpenList(list);      
       }
-    
-    }, [location.pathname])
+    // eslint-disable-next-line
+    }, [location.pathname])   
 
-    const handleMenuOpen = (pagePath: string, isOpen: boolean) => {
+
+    const handleMenuOpen = (pagePath: string, isOpen: boolean): void => {
       const page = pageLookup[pagePath.toLowerCase()];
       const list = {...menuOpenList};
       list[page.path] = isOpen
@@ -82,65 +54,54 @@ const Menu: FC = (): ReactElement => {
     }
 
     return (
-        <Box>
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        >
+          { isMobile &&
+            <Fab
+              onClick={handleDrawerToggle}
+              sx={{
+                position: 'absolute',
+                top: (theme: Theme) => theme.spacing(2),
+                left: (theme: Theme) => theme.spacing(2),
+              }} 
+            >
+              <MenuIcon />
+            </Fab>
+          }
+            <Drawer
+              container={document.body}
+              variant="temporary"
+              anchor="left"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+              sx={{
+                display: { xs: 'block', sm: 'none' },
+                ...drawerStyle
+              }}       
+            >
+              <MenuContent 
+                menuOpenList={menuOpenList} 
+                onMenuOpen={handleMenuOpen}
+              />
+            </Drawer>
             <Drawer
               variant="permanent"
-              anchor="left"                
-              className={classes.drawer}
-              classes={{
-                paper: classes.drawerPaper,
-                paperAnchorDockedLeft: classes.paperAnchorDockedLeft,
-              }}
+              anchor="left"
+              open
+              sx={{
+                display: { xs: 'none', sm: 'block' },
+                ...drawerStyle
+              }}       
             >
-              <Box>
-                <img 
-                  className={classes.logo}
-                  src={logo} 
-                  alt='logo'
-                />
-                
-                <Divider classes={{light: classes.divider}} light variant='middle'/>
-              </Box>
-              <Box
-                className={classes.menu}
-              >
-                <List>                    
-                  <MenuItems 
-                    pages={pages} 
-                    menuOpenList={menuOpenList} 
-                    onMenuOpen={handleMenuOpen} 
-                  />
-                </List>
-              </Box>
-              <Box>
-                <Divider classes={{light: classes.divider}} light variant='middle'/>
-                <Box
-                  className={classes.footer}
-                >
-                  <Button   
-                    className={classes.icons}                  
-                    component={Link} 
-                    to='/pages/about'                  
-                  >
-                    About
-                  </Button>
-                  <IconButton   
-                    className={classes.icons}     
-                    component={Link} 
-                    to='/pages/about' 
-                  >
-                      <TwitterIcon />
-                  </IconButton>
-                  
-                  <IconButton   
-                    className={classes.icons}     
-                    component={Link} 
-                    to='/pages/about' 
-                  >
-                      <GitHubIcon />
-                  </IconButton>
-                </Box>
-              </Box>
+              <MenuContent 
+                menuOpenList={menuOpenList} 
+                onMenuOpen={handleMenuOpen}
+              />
             </Drawer>
         </Box>
     );

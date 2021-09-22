@@ -5,10 +5,9 @@ const [pages, pageLookup, pageRoutes] = createPagesjson('./src/pages/', [], {}, 
 
 // elements of file to be created
 const fileElements = {
-    imports: `import { FC } from 'react';\n`,
     pageType: "\nexport type Page = {\n    name: string\n    friendlyName: string\n    isDirectory: boolean\n    path: string\n    metadata?: Metadata\n    pages?: Array<Page>\n    parents: Array<ParentPage>\n};",
     parentPageType: "\nexport type ParentPage = {\n    name: string\n    friendlyName: string\n    path: string\n};",
-    metadataType: "\nexport type Metadata = {\n    createdOn: string\n    updatedOn: string\n    isPublished: boolean\n    author: string\n    tags: Array<string>\n};",
+    metadataType: "\nexport type Metadata = {\n    createdOn: string\n    updatedOn: string\n    isPublished: boolean\n    abstract:string\n    author: string\n    tags: Array<string>\n};",
     pagesArray: `\nexport const pages: Array<Page> = ${JSON.stringify(pages, null, 2)}`,
     pageLookup: `\nexport const pageLookup: {[key: string]: Page} = ${JSON.stringify(pageLookup, null, 2)}`
 }
@@ -19,9 +18,15 @@ const routeFileElements = {
     pageRoutes: `\nexport const pageRoutes: Array<PageRoute> = ${JSON.stringify(pageRoutes, null, 2)}`
 };
 
+latestPostsFileElements = {
+    imports: "import { Page } from './pageData'",
+    latestPages: `\nexport const latestPages: Array<Page> = ${JSON.stringify(createLatestPages(pageLookup), null, 2)}`
+}
+
 // concatenate fileElements 
 let fileBody = createFileBody(fileElements);
 let routeFileBody = createFileBody(routeFileElements);
+let latestPostsFileBody = createFileBody(latestPostsFileElements);
 
 // remove quotes around pageComponent prperty to allow importing of component
 routeFileBody = removePageComponentQuotes(pageRoutes, routeFileBody);
@@ -29,6 +34,7 @@ routeFileBody = removePageComponentQuotes(pageRoutes, routeFileBody);
 // create file
 fs.writeFileSync('./src/pageData.ts', fileBody);
 fs.writeFileSync('./src/routes.ts', routeFileBody);
+fs.writeFileSync('./src/latestPosts.ts', latestPostsFileBody);
 
 
 // ------------------------------ functions ------------------------------ //
@@ -39,6 +45,19 @@ function createFileBody(fileElements) {
         fileBody = `${fileBody}${value}\n`;
     });
     return fileBody;
+}
+
+function createLatestPages(pageLookup){
+
+    let pageArray = [];
+    Object.entries(pageLookup).forEach(([key, value]) => {
+        if(!value.isDirectory){
+            pageArray.push(value);
+        }
+    });
+
+    pageArray.sort((a, b) => a.metadata.createdOn > b.metadata.createdOn && 1 || -1);
+    return pageArray;
 }
 
 function createImports(pageRoutes) {    
@@ -117,7 +136,7 @@ function createPageMetadata(path){
     const page = fs.readFileSync(path, 'utf8');
     const  splitPage = page.split("\r\n")  
 
-    const jsonString = (splitPage[0] + splitPage[1] + splitPage[2] + splitPage[3] +splitPage[4] + splitPage[5] + splitPage[6]).replace(/\//g, "");
+    const jsonString = (splitPage[0] + splitPage[1] + splitPage[2] + splitPage[3] +splitPage[4] + splitPage[5] + splitPage[6] + splitPage[7]).replace(/\//g, "");
 
     const metadata = JSON.parse(jsonString);
 

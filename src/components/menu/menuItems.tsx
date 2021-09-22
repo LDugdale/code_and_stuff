@@ -1,25 +1,9 @@
 import React, { FC, ReactElement } from 'react'
-import { List, ListItem, ListItemText, Collapse, makeStyles, createStyles, Theme } from '@material-ui/core';
-import { ExpandLess, ExpandMore} from '@material-ui/icons';
+import { List, ListItem, ListItemText, Collapse, Theme, Box } from '@mui/material';
+import { ExpandLess, ExpandMore} from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 import { Page } from '../../pageData';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
-    selected: {
-        backgroundColor: `transparent !important`,
-        color: theme.palette.primary.main
-    },
-  }),
-);
 
 type MenuItemProps = {
     pages: Array<Page>,
@@ -30,7 +14,7 @@ type MenuItemProps = {
 const MenuItems: FC<MenuItemProps> = ({pages, menuOpenList, onMenuOpen}: MenuItemProps): ReactElement<MenuItemProps> => {
 
     const location = useLocation();
-    const classes = useStyles();
+
 
     const isNestedListItem = (link: string): boolean => {
         const numberOfSlashes = (link.match(new RegExp("/", "g")) || []).length
@@ -51,20 +35,25 @@ const MenuItems: FC<MenuItemProps> = ({pages, menuOpenList, onMenuOpen}: MenuIte
         return false;
     }
 
-    return(
-        <>
+    return (
+        (<Box>
             {pages.map((page, index) => {
 
                 if(page.isDirectory){
                     const isOpen = menuOpenList[page.path];
                     return (
-                        <li key={index}>
+                        <div key={index}>
                             <ListItem 
                                 selected={isSelected(page.name)}
+                                sx={{
+                                    '&.Mui-selected': {
+                                        color: (theme: Theme) => theme.palette.primary.main,
+                                        backgroundColor: 'transparent'
+                                    }
+                                }}
                                 component="div" 
                                 button 
                                 onClick={() => onMenuOpen(page.path, !isOpen)}
-                                classes={{selected: classes.selected}}
                             >
                                 <ListItemText primary={page.friendlyName} />
                                 {isOpen ? <ExpandLess color='primary'/> : <ExpandMore />}
@@ -79,16 +68,20 @@ const MenuItems: FC<MenuItemProps> = ({pages, menuOpenList, onMenuOpen}: MenuIte
                                     />
                                 </List>
                             </Collapse>
-                        </li>
+                        </div>
                     );
                 }
-                const listItemClass = isNestedListItem(page.path) ? classes.nested : '';
                 return (
                     <ListItem 
                         selected={isSelected(page.name)}
+                        sx={{ 
+                            pl: isNestedListItem(page.path) ? 4 : 2,
+                            '&.Mui-selected': {
+                                color: (theme: Theme) => theme.palette.primary.main,
+                                backgroundColor: 'transparent'
+                            }
+                        }}
                         color='primary'
-                        className={listItemClass}
-                        classes={{selected: classes.selected, }}
                         button 
                         key={index} 
                         component={Link} 
@@ -98,7 +91,7 @@ const MenuItems: FC<MenuItemProps> = ({pages, menuOpenList, onMenuOpen}: MenuIte
                     </ListItem>
                 )
             })}
-        </>
+        </Box>)
     );
 }
 

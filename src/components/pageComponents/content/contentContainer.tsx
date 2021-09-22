@@ -1,22 +1,6 @@
-import { Container, createStyles, Box, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Container, Box, Theme, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-        flexGrow: 1,
-    },
-    header: {
-        backgroundColor: '#3a414e',
-        paddingTop: theme.spacing(10),
-        paddingBottom: theme.spacing(5),
-        color: theme.palette.common.white
-    },
-    content: {
-        paddingTop: theme.spacing(5),
-    }
-  }),
-);
+import BreadCrumbs from './breadcrumbs';
 
 type ContentProps = {
     title: string
@@ -24,17 +8,24 @@ type ContentProps = {
 }
 
 export const Content: FC<ContentProps> = ({title, children}: ContentProps): ReactElement<ContentProps> => {
-    const classes = useStyles();
 
     return (
         <Box>
             <Box
-                className={classes.header}
+                sx={{
+                    backgroundColor: '#3a414e',
+                    paddingTop: (theme: Theme) => theme.spacing(10),
+                    paddingBottom: (theme: Theme) => theme.spacing(5),
+                    color: (theme: Theme) => theme.palette.common.white
+                }}
             >
                 <Container 
                     maxWidth='sm'
-                    className={classes.root}
+                    sx={{
+                        flexGrow: 1,
+                    }}
                 > 
+                    <BreadCrumbs />
                     <Typography
                         variant='h1'
                         align='left'
@@ -44,7 +35,9 @@ export const Content: FC<ContentProps> = ({title, children}: ContentProps): Reac
                 </Container>
             </Box>
             <Container 
-                className={classes.content}
+                sx={{
+                    paddingTop: (theme: Theme) => theme.spacing(5),
+                }}
                 maxWidth='sm'
             > 
                 <div>{children}</div>

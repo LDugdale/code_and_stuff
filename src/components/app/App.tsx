@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../layout';
 import { BrowserRouter } from 'react-router-dom';
-import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   palette: {
