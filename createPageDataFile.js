@@ -86,12 +86,15 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
     const currentParents = parentPages ? parentPages : [];
     
     fileObjs.forEach(file => {
+        if(file.name.includes(".json")){
+            return;
+        }
         const path = `${directory}${removeFileExtension(file.name)}`.replace('./src', '');
         const pageName = capitalizeFirstLetter(removeFileExtension(file.name));
 
         if(file.isFile()){
 
-            const metadata = createPageMetadata(directory + file.name);
+            const metadata = createPageMetadata(path);
 
             const pageRoute = {
                 path: path,
@@ -133,15 +136,9 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
 }
 
 function createPageMetadata(path){
-    const page = fs.readFileSync(path, 'utf8');
-    const  splitPage = page.split("\r\n")  
-
-    const jsonString = (`{ ${splitPage[splitPage.length - 7]}, ${splitPage[splitPage.length - 6]}, ${splitPage[splitPage.length - 5]}, ${splitPage[splitPage.length - 4]}, ${splitPage[splitPage.length - 3]}, ${splitPage[splitPage.length - 2]} }`).replace(/\//g, "");
-    const sanitizedJson = jsonString.replace(/(['"])?([a-z0-9A-Z_]+)(['"])?: /g, '"$2": ');
-    const metadata = JSON.parse(sanitizedJson);
-
+    const page = fs.readFileSync(`./src${path}.json`, 'utf8');
+    const metadata = JSON.parse(page);
     return metadata;
-
 }
 
 function capitalizeFirstLetter(fileName) {
