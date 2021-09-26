@@ -1,12 +1,3 @@
-///{
-///"createdOn": "1.01.2011, 02:03:04.567",
-///"updatedOn": "1.01.2011, 02:03:04.567",
-///"isPublished": true,
-///"abstract": "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post.",
-///"author": "Laurie Dugdale",
-///"tags": ["about", "site"]
-///}
-
 import React, { FC, ReactElement } from "react";
 import { Content, Paragraph } from "../components/pageComponents";
 
@@ -28,3 +19,13 @@ export const Latest: FC = (): ReactElement => {
 }
 
 export default Latest;
+
+// eslint-disable-next-line
+`
+createdOn: "1.01.2011, 02:03:04.567"
+updatedOn: "1.01.2011, 02:03:04.567"
+isPublished: true
+abstract: "When I was building this blog, my biggest priority was to find a solution that would let me embed totally custom content in each post."
+author: "Laurie Dugdale"
+tags: ["about", "site"]
+`

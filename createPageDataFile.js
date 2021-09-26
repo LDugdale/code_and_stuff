@@ -136,9 +136,9 @@ function createPageMetadata(path){
     const page = fs.readFileSync(path, 'utf8');
     const  splitPage = page.split("\r\n")  
 
-    const jsonString = (splitPage[0] + splitPage[1] + splitPage[2] + splitPage[3] +splitPage[4] + splitPage[5] + splitPage[6] + splitPage[7]).replace(/\//g, "");
-
-    const metadata = JSON.parse(jsonString);
+    const jsonString = (`{ ${splitPage[splitPage.length - 7]}, ${splitPage[splitPage.length - 6]}, ${splitPage[splitPage.length - 5]}, ${splitPage[splitPage.length - 4]}, ${splitPage[splitPage.length - 3]}, ${splitPage[splitPage.length - 2]} }`).replace(/\//g, "");
+    const sanitizedJson = jsonString.replace(/(['"])?([a-z0-9A-Z_]+)(['"])?: /g, '"$2": ');
+    const metadata = JSON.parse(sanitizedJson);
 
     return metadata;
 
