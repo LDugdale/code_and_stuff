@@ -24,6 +24,9 @@ const LatestItem: FC<LatestItemProps> = ({page}: LatestItemProps): ReactElement<
                 },
                 '& .MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight':{
                     backgroundColor: 'transparent'
+                },
+                '& .MuiCardActionArea-root .MuiCardActionArea-focusHighlight':{
+                    opacity: 0                    
                 }
             }}
         > 
