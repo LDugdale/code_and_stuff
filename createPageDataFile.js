@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // create JSON of pages added to pages folder
-const [pages, pageLookup, pageRoutes] = createPagesjson('./src/pages/', [], {}, []);
+const [pages, pageLookup, pageRoutes] = createPagesjson('./pages/posts/', [], {}, []);
 
 // elements of file to be created
 const fileElements = {
@@ -33,7 +33,6 @@ routeFileBody = removePageComponentQuotes(pageRoutes, routeFileBody);
 
 // create file
 fs.writeFileSync('./src/pageData.ts', fileBody);
-fs.writeFileSync('./src/routes.ts', routeFileBody);
 fs.writeFileSync('./src/latestPosts.ts', latestPostsFileBody);
 
 
@@ -89,7 +88,7 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
         if(file.name.includes(".json")){
             return;
         }
-        const path = `${directory}${removeFileExtension(file.name)}`.replace('./src', '');
+        const path = `${directory}${removeFileExtension(file.name)}`.replace('./pages','');
         const pageName = capitalizeFirstLetter(removeFileExtension(file.name));
 
         if(file.isFile()){
@@ -136,7 +135,7 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
 }
 
 function createPageMetadata(path){
-    const page = fs.readFileSync(`./src${path}.json`, 'utf8');
+    const page = fs.readFileSync(`./pages/${path}.json`, 'utf8');
     const metadata = JSON.parse(page);
     return metadata;
 }

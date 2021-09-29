@@ -28,13 +28,13 @@ export const pages: Array<Page> = [
   {
     "name": "About",
     "friendlyName": "About",
-    "path": "/pages/about",
+    "path": "/posts/about",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -52,26 +52,26 @@ export const pages: Array<Page> = [
   {
     "name": "Algorithms",
     "friendlyName": "Algorithms",
-    "path": "/pages/algorithms",
+    "path": "/posts/algorithms",
     "isDirectory": true,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "pages": [
       {
         "name": "Bubble_Sort",
         "friendlyName": "Bubble Sort",
-        "path": "/pages/algorithms/bubble_Sort",
+        "path": "/posts/algorithms/bubble_Sort",
         "isDirectory": false,
         "parents": [
           {
             "name": "Algorithms",
             "friendlyName": "Algorithms",
-            "path": "/pages/algorithms"
+            "path": "/posts/algorithms"
           }
         ],
         "metadata": {
@@ -91,13 +91,13 @@ export const pages: Array<Page> = [
   {
     "name": "Latest",
     "friendlyName": "Latest",
-    "path": "/pages/latest",
+    "path": "/posts/latest",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -115,13 +115,13 @@ export const pages: Array<Page> = [
   {
     "name": "Test",
     "friendlyName": "Test",
-    "path": "/pages/test",
+    "path": "/posts/test",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -139,16 +139,16 @@ export const pages: Array<Page> = [
 ]
 
 export const pageLookup: {[key: string]: Page} = {
-  "/pages/about": {
+  "/posts/about": {
     "name": "About",
     "friendlyName": "About",
-    "path": "/pages/about",
+    "path": "/posts/about",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -163,16 +163,16 @@ export const pageLookup: {[key: string]: Page} = {
       ]
     }
   },
-  "/pages/algorithms/bubble_sort": {
+  "/posts/algorithms/bubble_sort": {
     "name": "Bubble_Sort",
     "friendlyName": "Bubble Sort",
-    "path": "/pages/algorithms/bubble_Sort",
+    "path": "/posts/algorithms/bubble_Sort",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -187,29 +187,29 @@ export const pageLookup: {[key: string]: Page} = {
       ]
     }
   },
-  "/pages/algorithms": {
+  "/posts/algorithms": {
     "name": "Algorithms",
     "friendlyName": "Algorithms",
-    "path": "/pages/algorithms",
+    "path": "/posts/algorithms",
     "isDirectory": true,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ]
   },
-  "/pages/latest": {
+  "/posts/latest": {
     "name": "Latest",
     "friendlyName": "Latest",
-    "path": "/pages/latest",
+    "path": "/posts/latest",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -224,16 +224,16 @@ export const pageLookup: {[key: string]: Page} = {
       ]
     }
   },
-  "/pages/test": {
+  "/posts/test": {
     "name": "Test",
     "friendlyName": "Test",
-    "path": "/pages/test",
+    "path": "/posts/test",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {

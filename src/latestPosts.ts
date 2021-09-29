@@ -4,13 +4,13 @@ export const latestPages: Array<Page> = [
   {
     "name": "Test",
     "friendlyName": "Test",
-    "path": "/pages/test",
+    "path": "/posts/test",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -28,13 +28,13 @@ export const latestPages: Array<Page> = [
   {
     "name": "Latest",
     "friendlyName": "Latest",
-    "path": "/pages/latest",
+    "path": "/posts/latest",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -52,13 +52,13 @@ export const latestPages: Array<Page> = [
   {
     "name": "Bubble_Sort",
     "friendlyName": "Bubble Sort",
-    "path": "/pages/algorithms/bubble_Sort",
+    "path": "/posts/algorithms/bubble_Sort",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
@@ -76,13 +76,13 @@ export const latestPages: Array<Page> = [
   {
     "name": "About",
     "friendlyName": "About",
-    "path": "/pages/about",
+    "path": "/posts/about",
     "isDirectory": false,
     "parents": [
       {
         "name": "Algorithms",
         "friendlyName": "Algorithms",
-        "path": "/pages/algorithms"
+        "path": "/posts/algorithms"
       }
     ],
     "metadata": {
