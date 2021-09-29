@@ -13,7 +13,7 @@ export const Paragraph: FC<ParagraphProps> = ({children}: ParagraphProps): React
                 marginBottom: (theme: Theme) => theme.spacing(4),
             }}
             variant='body2'
-        >
+        > 
             {children}
         </Typography>
     );
