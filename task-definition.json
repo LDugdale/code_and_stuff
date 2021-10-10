@@ -9,12 +9,12 @@
           "logDriver": "awslogs",
           "secretOptions": null,
           "options": {
-            "awslogs-group": "/ecs/code_and_stuff-task-definition",
+            "awslogs-group": "/ecs/code_and_stuff-definition",
             "awslogs-region": "eu-west-2",
             "awslogs-stream-prefix": "ecs"
           }
         },
-        "entryPoint": null,
+        "entryPoint": [],
         "portMappings": [
           {
             "hostPort": 80,
@@ -22,7 +22,7 @@
             "containerPort": 80
           }
         ],
-        "command": null,
+        "command": [],
         "linuxParameters": null,
         "cpu": 0,
         "environment": [],
@@ -34,10 +34,10 @@
         "secrets": null,
         "dockerSecurityOptions": null,
         "memory": null,
-        "memoryReservation": null,
+        "memoryReservation": 512,
         "volumesFrom": [],
         "stopTimeout": null,
-        "image": "282189298158.dkr.ecr.eu-west-2.amazonaws.com/code_and_stuff:dockerfile",
+        "image": "adytaveras/react-test:latest",
         "startTimeout": null,
         "firelensConfiguration": null,
         "dependsOn": null,
@@ -45,7 +45,7 @@
         "interactive": null,
         "healthCheck": null,
         "essential": true,
-        "links": null,
+        "links": [],
         "hostname": null,
         "extraHosts": null,
         "pseudoTerminal": null,
@@ -54,7 +54,7 @@
         "dockerLabels": null,
         "systemControls": null,
         "privileged": null,
-        "name": "code_and_stuff"
+        "name": "code_and_stuff-container"
       }
     ],
     "placementConstraints": [],
@@ -64,8 +64,8 @@
       "EC2",
       "FARGATE"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:282189298158:task-definition/code_and_stuff-task-definition:7",
-    "family": "code_and_stuff-task-definition",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:282189298158:task-definition/code_and_stuff-definition:1",
+    "family": "code_and_stuff-definition",
     "requiresAttributes": [
       {
         "targetId": null,
@@ -83,19 +83,13 @@
         "targetId": null,
         "targetType": null,
         "value": null,
-        "name": "com.amazonaws.ecs.capability.ecr-auth"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
         "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
       },
       {
         "targetId": null,
         "targetType": null,
         "value": null,
-        "name": "ecs.capability.execution-role-ecr-pull"
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
       },
       {
         "targetId": null,
@@ -116,7 +110,7 @@
     ],
     "networkMode": "awsvpc",
     "cpu": "256",
-    "revision": 7,
+    "revision": 1,
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,

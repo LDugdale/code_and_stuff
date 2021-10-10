@@ -71,7 +71,7 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: code_and_stuff
+        container-name: code_and_stuff-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
@@ -79,5 +79,5 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: code_and_stuff-service
-        cluster: default
+        cluster: code-and-stuff-cluster
         wait-for-service-stability: true
