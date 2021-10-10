@@ -17,6 +17,8 @@ RUN npm run build && npm install --production --ignore-scripts --prefer-offline
 FROM node:alpine AS runner
 WORKDIR /app
 
+ENV PORT 3000
+
 ENV NODE_ENV production
 
 RUN addgroup -g 1001 -S nodejs
