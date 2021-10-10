@@ -78,6 +78,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: code_and_stuff-service
+        service: code_and_stuff-container-service
         cluster: code-and-stuff-cluster
         wait-for-service-stability: true
