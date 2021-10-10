@@ -79,5 +79,5 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: code_and_stuff-container-service
-        cluster: code-and-stuff-cluster
+        cluster: cod-and-stuff-cluster
         wait-for-service-stability: true
