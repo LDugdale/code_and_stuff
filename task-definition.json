@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/code_and_stuff-task-definition",
+          "awslogs-group": "/ecs/code_and_stuff-definition",
           "awslogs-region": "eu-west-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -17,8 +17,9 @@
       "entryPoint": [],
       "portMappings": [
         {
+          "hostPort": 80,
           "protocol": "tcp",
-          "containerPort": 3000
+          "containerPort": 80
         }
       ],
       "command": [],
@@ -63,8 +64,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:eu-west-2:282189298158:task-definition/code_and_stuff-task-definition:14",
-  "family": "code_and_stuff-task-definition",
+  "taskDefinitionArn": "arn:aws:ecs:eu-west-2:282189298158:task-definition/code_and_stuff-definition:8",
+  "family": "code_and_stuff-definition",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -109,7 +110,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 14,
+  "revision": 8,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
