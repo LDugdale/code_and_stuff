@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node createPageDataFile.js && next dev",
-    "build": "node createPageDataFile.js && next --openssl-legacy-provider build",
+    "build": "node createPageDataFile.js && export NODE_OPTIONS=--openssl-legacy-provider; next build",
     "start": "next --openssl-legacy-provider start -p 3000",
     "lint": "next lint"
   },
