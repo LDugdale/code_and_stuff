@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node createPageDataFile.js && next dev",
-    "build": "node createPageDataFile.js && next build",
-    "start": "next start -p 3000",
+    "build": "node createPageDataFile.js && next --openssl-legacy-provider build",
+    "start": "next --openssl-legacy-provider start -p 3000",
     "lint": "next lint"
   },
   "dependencies": {
