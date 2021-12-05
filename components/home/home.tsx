@@ -1,6 +1,6 @@
 import { Container, Stack, Typography, Box, Theme } from '@mui/material';
 import React, {FC, ReactElement} from 'react';
-import { latestPages } from '../../src/latestPosts';
+import { latestPages } from '../../src/pageData/latestPosts';
 import LatestItem from './latestItem';
 
 const Home: FC = (): ReactElement => {

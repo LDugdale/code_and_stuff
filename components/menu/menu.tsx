@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useState, useEffect } from 'react'
-import { pageLookup } from '../../src/pageData';
+import { pageLookup } from '../../src/pageData/pageData';
 import { Box, Drawer, Fab, Theme, useMediaQuery, useTheme } from '@mui/material';
 import MenuContent from './menuContent';
 import MenuIcon from '@mui/icons-material/Menu';

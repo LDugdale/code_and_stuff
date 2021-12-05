@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardHeader, CardContent, Typography, Box, Theme } from '@mui/material';
 import React, {FC, ReactElement} from 'react';
-import { Page } from '../../src/pageData';
+import { Page } from '../../src/pageData/pageData';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Link from '../../src/Link';
 

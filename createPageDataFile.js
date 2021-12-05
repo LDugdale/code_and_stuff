@@ -32,8 +32,8 @@ let latestPostsFileBody = createFileBody(latestPostsFileElements);
 routeFileBody = removePageComponentQuotes(pageRoutes, routeFileBody);
 
 // create file
-fs.writeFileSync('./src/pageData.ts', fileBody);
-fs.writeFileSync('./src/latestPosts.ts', latestPostsFileBody);
+fs.writeFileSync('./src/pageData/pageData.ts', fileBody);
+fs.writeFileSync('./src/pageData/latestPosts.ts', latestPostsFileBody);
 
 
 // ------------------------------ functions ------------------------------ //
@@ -82,7 +82,7 @@ function removePageComponentQuotes(pageRoutes, text) {
 function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) {
 
     const fileObjs = fs.readdirSync(directory, { withFileTypes: true });
-    const currentParents = parentPages ? parentPages : [];
+    let currentParents = parentPages ? [...parentPages] : [];
     
     fileObjs.forEach(file => {
         if(file.name.includes(".json")){
@@ -94,6 +94,9 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
         if(file.isFile()){
 
             const metadata = createPageMetadata(path);
+            if(!metadata.isPublished){
+                return;
+            }
 
             const pageRoute = {
                 path: path,
@@ -112,6 +115,14 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
             pageRoutes.push(pageRoute);
         } else {
             const folderDir = directory + file.name + '/';
+            const parent = [];
+            parent.push({
+                name: pageName,
+                friendlyName: pageName.replace(/_/g, ' '),
+                path: path,
+            });
+            const [returnedPages, returnedPageLookup, returnedPageRoutes] = createPagesjson(folderDir, [], pageLookup, pageRoutes, parent);
+            
             const folderDetails = {
                 name: pageName,
                 friendlyName: pageName.replace(/_/g, ' '),
@@ -119,18 +130,19 @@ function createPagesjson(directory, pages, pageLookup, pageRoutes, parentPages) 
                 isDirectory: !file.isFile(),
                 parents: currentParents
             };
-            currentParents.push({
-                name: pageName,
-                friendlyName: pageName.replace(/_/g, ' '),
-                path: path,
-            });
-            const [returnedPages, returnedPageLookup, returnedPageRoutes] = createPagesjson(folderDir, [], pageLookup, pageRoutes, currentParents);
+            currentParents = [];
+
+            if(returnedPages.length == 0){
+                return;
+            }
 
             pageLookup[path.toLowerCase()] = {...folderDetails};
             folderDetails.pages = returnedPages
             pages.push(folderDetails);
         }
     });
+    currentParents = [];
+
     return [pages, pageLookup, pageRoutes];
 }
 

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react'
-import { pages } from '../../src/pageData';
+import { pages } from '../../src/pageData/pageData';
 import MenuItems from './menuItems';
 import { Box, List, Theme, IconButton, Button } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';

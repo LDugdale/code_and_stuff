@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react'
 import { List, ListItem, ListItemText, Collapse, Theme, Box } from '@mui/material';
 import { ExpandLess, ExpandMore} from '@mui/icons-material';
-import { Page } from '../../src/pageData';
+import { Page } from '../../src/pageData/pageData';
 import { useRouter } from 'next/router'
 import Link from '../../src/Link';
 
